@@ -2,6 +2,8 @@
 
 此模块随 AME fork 源码维护，通过 Python 标准库提供 HTTP，通过本仓库编译的 `ame_worker` 调用 C++ 检索引擎。不依赖文旅 Agent 仓库、Java、Maven 或 Docker。默认 AME 库构建保持不变，启用服务时设置 `AME_BUILD_RAGFLOW_SERVICE=ON`。
 
+推荐使用 [一键部署与升级流程](DEPLOYMENT.md)：`deploy.sh upgrade --port 18088` 更新已有实例，`deploy.sh install --port 18089 --corpus /tmp/ame-corpus.json` 创建新实例。脚本检查依赖、保留 Token、验证接口，并在升级失败时恢复旧适配文件。下文保留接口说明和手动部署方式。
+
 ## 接口与参数
 
 `POST /api/v1/retrieval`，`Content-Type: application/json`，`Authorization: Bearer <token>`。Token 文件仅保存原始值，不包含 `Bearer` 前缀。服务启动时读取 Token，变更后需要重启。`GET /health` 无需 Token。
