@@ -1,0 +1,42 @@
+[Unit]
+Description=AME RAGFlow-compatible retrieval service
+After=network.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+DynamicUser=yes
+StateDirectory=ame-ragflow
+WorkingDirectory=/opt/ame
+LoadCredential=token:/etc/ame/token
+Environment=AME_TOKEN_FILE=/run/credentials/ame-ragflow.service/token
+Environment=AME_WORKER=/opt/ame/build/services/ragflow/ame_worker
+Environment=AME_CORPUS=/etc/ame/corpus.json
+Environment=AME_DICTIONARY=/opt/ame/lexicon/lexicon_src/segmentation/merged.txt
+Environment=AME_CACHE=/var/lib/ame-ragflow/dictionary.cache
+Environment=AME_DATASET_ID=ame-travel
+Environment=AME_BIND=0.0.0.0
+Environment=AME_PORT=18087
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 /opt/ame/services/ragflow/server.py
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=2G
+CPUQuota=100%
+TasksMax=64
+UMask=0077
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

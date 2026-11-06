@@ -295,6 +295,7 @@ static void test_store_adapters() {
 
   Engine e;
   GraphStore gs(&e);
+  CHECK(&gs.engine() == &e);
   CHECK(gs.ingest_case(c).events == 9);
   auto ra = gs.answer_question(q, cfg);
   auto direct = answer(e, q, cfg);

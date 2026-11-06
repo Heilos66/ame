@@ -44,7 +44,7 @@ class IStore {
 // 摄入时 dia_id 落在事件 attrs）
 class GraphStore final : public IStore {
  public:
-  explicit GraphStore(Engine* engine) : engine_(engine_) {}
+  explicit GraphStore(Engine* engine) : engine_(engine) {}
   IngestStats ingest_case(const BenchCase& c) override;
   StoreAnswer answer_question(const BenchQuestion& q, const BenchConfig& cfg) override;
   Engine& engine() { return *engine_; }

@@ -34,3 +34,8 @@ add_subdirectory(llm)           # LLM 接入层（DeepSeek 客户端 + 提取/�
 
 add_subdirectory(tests)
 add_subdirectory(demo)
+
+option(AME_BUILD_RAGFLOW_SERVICE "Build the standalone RAGFlow-compatible HTTP service" OFF)
+if(AME_BUILD_RAGFLOW_SERVICE)
+  add_subdirectory(services/ragflow)
+endif()

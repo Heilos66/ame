@@ -16,6 +16,10 @@
 [docs/engineering/联想记忆引擎_工程实现与优化文档.md](docs/engineering/联想记忆引擎_工程实现与优化文档.md)（实现与迭代记录）。
 文档索引见 [docs/README.md](docs/README.md)。
 
+独立 HTTP 知识检索服务见 [RAGFlow 兼容接口与 ECS 部署](services/ragflow/README.md)。
+通过 `AME_BUILD_RAGFLOW_SERVICE=ON` 构建；支持 Bearer 鉴权、`/api/v1/retrieval`、
+`/health`，接受并忽略不适用的 RAGFlow KNN、重排和相似度阈值参数。
+
 ---
 
 ## 一、架构总览
